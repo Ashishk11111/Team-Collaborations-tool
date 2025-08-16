@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Boards Viewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f8f8f8;
+    }
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      margin-top: 30px;
+    }
+    img {
+      max-width: 500px;
+      display: block;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ddd;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h1>Boards Viewer</h1>
+  <div id="boards"></div>
+
+  <script>
+    const roomId = "689a2d5955f91a8259806740"; // change this to your actual room ID
+    const apiUrl = `http://localhost:5000/rooms/${roomId}/boards`;
+
+    fetch(apiUrl, { credentials: 'include' })
+      .then(res => res.json())
+      .then(boards => {
+        const container = document.getElementById('boards');
+
+        boards.forEach(board => {
+          const title = document.createElement('h2');
+          title.textContent = board.name;
+          container.appendChild(title);
+
+          if (board.data) {
+            if (board.data.startsWith('data:image/')) {
+              // Full data URL provided — use directly
+              const img = document.createElement('img');
+              img.src = board.data;
+              container.appendChild(img);
+            } else if (board.data.startsWith('iVBOR') || board.data.startsWith('/9j/')) {
+              // Raw base64 — add prefix
+              const img = document.createElement('img');
+              img.src = `data:image/png;base64,${board.data}`;
+              container.appendChild(img);
+            } else if (board.data.startsWith('{')) {
+              // JSON drawing data
+              const pre = document.createElement('pre');
+              pre.textContent = board.data;
+              container.appendChild(pre);
+            } else {
+              // Unknown data format
+              const pre = document.createElement('pre');
+              pre.textContent = `Unknown format: ${board.data}`;
+              container.appendChild(pre);
+            }
+          } else {
+            const p = document.createElement('p');
+            p.textContent = 'No data';
+            container.appendChild(p);
+          }
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Error loading boards.');
+      });
+  </script>
+</body>
+</html>

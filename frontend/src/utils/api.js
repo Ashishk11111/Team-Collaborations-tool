@@ -1,0 +1,24 @@
+
+import axios from 'axios';
+
+export const API = axios.create({
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000',
+  withCredentials: true,
+});
+
+
+// User auth
+export const getCurrentUser = () => API.get('/auth/current_user');
+export const logoutUser = () => API.get('/auth/logout');
+
+// Rooms
+export const createRoom = (name) => API.post('/rooms/create', { name });
+export const getRooms = () => API.get('/rooms');
+export const joinRoom = (roomId) => API.post('/rooms/join', { roomId });
+export const deleteRoom = (roomId) => API.delete(`/rooms/${roomId}`);
+
+// Boards
+export const getBoards = (roomId) => API.get(`/rooms/${roomId}/boards`);
+export const addBoard = (roomId, board) => API.post(`/rooms/${roomId}/boards`, board);
+export const updateBoard = (roomId, boardId, data) => API.put(`/rooms/${roomId}/boards/${boardId}`, { data });
+export const deleteBoard = (roomId, boardId) => API.delete(`/rooms/${roomId}/boards/${boardId}`);
