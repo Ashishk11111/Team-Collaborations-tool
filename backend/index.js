@@ -22,7 +22,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://team-collaborations-tool.vercel.app', // React frontend URL
+    origin: 'https://team-collaborations-tool-frontend2-0.onrender.com', // React frontend URL
     credentials: true,
   },
 });
@@ -52,7 +52,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('❌ Failed to connect to MongoDB:', err));
 
 app.use(cors({
-  origin: 'https://team-collaborations-tool-frontend.onrender.com',
+  origin: 'https://team-collaborations-tool-frontend2-0.onrender.com',
   credentials: true,
 }));
 
