@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function GoogleLoginPage() {
   const handleLogin = () => {
-    window.open(' https://team-collaborations-backend.onrender.com/auth/google', '_self');
+    window.open('https://team-collaborations-backend.onrender.com/auth/google', '_self');
   };
 
   return (

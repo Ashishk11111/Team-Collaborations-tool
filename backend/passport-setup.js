@@ -11,7 +11,7 @@ passport.deserializeUser((user, done) => {
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: '/auth/google/callback',
+  callbackURL: 'https://team-collaborations-backend.onrender.com/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
   // In a real app, you'd save/find user in DB here
   done(null, profile);

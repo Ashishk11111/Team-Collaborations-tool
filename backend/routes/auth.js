@@ -3,7 +3,7 @@ const passport = require('passport');
 
 // Google OAuth login
 router.get('/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] }));
+  passport.authenticate('google', { scope: ['openid', 'profile', 'email']  }));
 
 // Google OAuth callback
 router.get('/google/callback',
