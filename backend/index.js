@@ -52,7 +52,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('❌ Failed to connect to MongoDB:', err));
 
 app.use(cors({
-  origin: 'https://team-collaborations-tool.vercel.app',
+  origin: 'https://team-collaborations-tool-frontend.onrender.com',
   credentials: true,
 }));
 

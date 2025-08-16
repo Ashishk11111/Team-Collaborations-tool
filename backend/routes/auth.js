@@ -9,7 +9,7 @@ router.get('/google',
 router.get('/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/',
-    successRedirect: 'https://team-collaborations-tool.vercel.app/Dashboard', // frontend dashboard
+    successRedirect: 'https://team-collaborations-tool-frontend.onrender.com/dashboard', // frontend dashboard
   }));
 
 // Logout
