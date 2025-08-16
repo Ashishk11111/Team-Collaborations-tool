@@ -9,6 +9,7 @@ export const API = axios.create({
 
 // User auth
 export const getCurrentUser = () => API.get('/auth/current_user');
+console.log("Current_User: " , getCurrentUser);
 export const logoutUser = () => API.get('/auth/logout');
 
 // Rooms
