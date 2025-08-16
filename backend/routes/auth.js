@@ -3,13 +3,13 @@ const passport = require('passport');
 
 // Google OAuth login
 router.get('/google',
-  passport.authenticate('google', { scope: ['openid', 'profile', 'email']  }));
+  passport.authenticate('google', { scope: ['profile', 'email']  }));
 
 // Google OAuth callback
 router.get('/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/',
-    successRedirect: 'https://team-collaborations-tool-frontend2-0.onrender.com/Dashboard', // frontend dashboard
+    successRedirect: 'https://team-collaborations-tool-frontend3.onrender.com/Dashboard', // frontend dashboard
   }));
 
 // Logout
