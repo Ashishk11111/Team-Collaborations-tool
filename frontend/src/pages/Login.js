@@ -9,6 +9,7 @@ export default function Login() {
   useEffect(() => {
     getCurrentUser()
       .then(({ data }) => {
+        console.log("data: ",data);
         if (data) navigate('/dashboard');
       })
       .catch(() => {});
