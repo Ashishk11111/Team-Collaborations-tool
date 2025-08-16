@@ -63,7 +63,11 @@ const sessionMiddleware = session({
   secret: process.env.SESSION_SECRET || 'secretkey',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }, // For development only; set true + HTTPS in prod
+  cookie: {
+    secure: true,      // HTTPS required
+    httpOnly: true,    // browser JS cannot access cookies
+    sameSite: 'none',  // allow cross-site cookies (frontend & backend on different domains)
+  },
 });
 app.use(sessionMiddleware);
 
