@@ -22,7 +22,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://team-collaborations-tool-frontend2-0.onrender.com', // React frontend URL
+    origin: 'https://team-collaborations-tool-frontend3.onrender.com', // React frontend URL
     credentials: true,
   },
 });
@@ -52,7 +52,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('❌ Failed to connect to MongoDB:', err));
 
 app.use(cors({
-  origin: 'https://team-collaborations-tool-frontend2-0.onrender.com',
+  origin: 'https://team-collaborations-tool-frontend3.onrender.com',
   credentials: true,
 }));
 
@@ -199,5 +199,5 @@ socket.on('join-room', async ({ roomId }) => {
 });
 
 // ---------------- Start server ----------------
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
