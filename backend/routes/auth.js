@@ -3,13 +3,13 @@ const passport = require('passport');
 
 // Google OAuth login
 router.get('/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] }));
+  passport.authenticate('google', { scope: ['profile', 'email']  }));
 
 // Google OAuth callback
 router.get('/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/',
-    successRedirect: 'https://team-collaborations-tool-vive.vercel.app/dashboard' // frontend dashboard
+    successRedirect: 'https://team-collaborations-tool-vive.vercel.app/dashboard', // frontend dashboard
   }));
 
 // Logout
