@@ -20,7 +20,7 @@ const TOOL = {
   ERASER: "eraser",
 };
 
-export default function Whiteboard({ roomId, serverUrl = " https://team-collaborations-backend.onrender.com" }) {
+export default function Whiteboard({ roomId, serverUrl = "https://team-collaborations-backend.onrender.com" }) {
 
   // const [color, setColor] = useState("#111111"); // selected color
   const [showPicker, setShowPicker] = useState(false); // toggle visibility
