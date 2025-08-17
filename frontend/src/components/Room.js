@@ -21,7 +21,7 @@ export default function Room() {
         setUser(data);
 
         if (!socketRef.current) {
-          const s = io(' https://team-collaborations-backend.onrender.com', { withCredentials: true });
+          const s = io('https://team-collaborations-backend.onrender.com', { withCredentials: true });
           s.emit('join-room', { roomId });
           socketRef.current = s;
         }
