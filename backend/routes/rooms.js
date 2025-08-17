@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const Room = require('../models/Room');
 const mongoose = require('mongoose'); 
+
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.status(401).json({ message: 'Not authenticated' });
 }
-
 // Create new room
 router.post('/create', isAuthenticated, async (req, res) => {
   const { name } = req.body;

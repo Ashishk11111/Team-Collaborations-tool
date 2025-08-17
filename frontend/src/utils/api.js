@@ -2,13 +2,14 @@
 import axios from 'axios';
 
 export const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || ' https://team-collaborations-backend.onrender.com',
+  baseURL: 'https://team-collaborations-backend.onrender.com',
   withCredentials: true,
 });
 
 
 // User auth
 export const getCurrentUser = () => API.get('/auth/current_user');
+console.log("Current_User: " , getCurrentUser);
 export const logoutUser = () => API.get('/auth/logout');
 
 // Rooms

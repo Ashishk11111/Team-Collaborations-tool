@@ -22,7 +22,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://team-collaborations-tool-frontend2-0.onrender.com', // React frontend URL
+    origin: 'https://team-collaborations-tool-vive.vercel.app', // React frontend URL
     credentials: true,
   },
 });
@@ -52,18 +52,26 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('❌ Failed to connect to MongoDB:', err));
 
 app.use(cors({
-  origin: 'https://team-collaborations-tool-frontend2-0.onrender.com',
+  origin: 'https://team-collaborations-tool-vive.vercel.app',
   credentials: true,
 }));
 
+
+
+
 app.use(express.json());
 
+app.set('trust proxy', 1);
 // create a session middleware instance so we can reuse it with socket.io
 const sessionMiddleware = session({
   secret: process.env.SESSION_SECRET || 'secretkey',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }, // For development only; set true + HTTPS in prod
+   cookie: {
+    secure: true,      // HTTPS required
+    httpOnly: true,    // browser JS cannot access cookies
+    sameSite: 'none',  // allow cross-site cookies (frontend ≠ backend)
+  },
 });
 app.use(sessionMiddleware);
 
